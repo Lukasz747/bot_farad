@@ -37,7 +37,7 @@ Instrukcja:
 - Jeśli czegoś nie wiesz, zachęć do kontaktu z Łukaszem Drumlakiem pod numerem 512255966.
 """
 
-model = genai.GenerativeModel('gemini-2.5-flash-lite', system_instruction=system_instruction)
+model = genai.GenerativeModel('gemini-3.1-flash-lite', system_instruction=system_instruction)
 
 st.title("Farad - Twój Asystent Techniczny")
 
