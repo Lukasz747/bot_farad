@@ -1,7 +1,15 @@
 import streamlit as st
 import google.generativeai as genai
 import os
-
+# Ukrywanie logo/stopki Streamlit
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # 1. Konfiguracja API
 # 1. Konfiguracja API - bezpieczne pobieranie z sekretów
 genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
