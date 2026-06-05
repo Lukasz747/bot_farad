@@ -1,0 +1,19 @@
+# 1. Klucze i sekrety (Najważniejsze!)
+.streamlit/secrets.toml
+
+# 2. Środowiska wirtualne i biblioteki
+venv/
+env/
+.env
+
+# 3. Pliki tymczasowe Pythona
+__pycache__/
+*.pyc
+
+# 4. Pliki systemowe
+.DS_Store
+Thumbs.db
+
+# 5. Ustawienia edytorów kodu
+.vscode/
+.idea/
