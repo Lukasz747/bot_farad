@@ -5,13 +5,26 @@ import os
 # Ukrywanie logo/stopki Streamlit i zmniejszenie odstępów
 custom_css = """
             <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            .stAppDeployButton {visibility: hidden;}
-            .block-container {
+            #MainMenu {display: none !important;}
+            footer {display: none !important;}
+            header {display: none !important;}
+            .stAppDeployButton {display: none !important;}
+            
+            /* Usunięcie przestrzeni po nagłówku */
+            [data-testid="stHeader"] {
+                display: none !important;
+            }
+            
+            /* Zmniejszenie marginesów kontenera głównego */
+            .block-container, [data-testid="stAppViewBlockContainer"] {
                 padding-top: 1.5rem !important;
                 padding-bottom: 1rem !important;
+            }
+            
+            /* Całkowite ukrycie stopki "Built with Streamlit" i balonika */
+            .viewerBadge, [data-testid="stViewerBadge"], [data-testid="stFooter"] {
+                display: none !important;
+                visibility: hidden !important;
             }
             </style>
             """
