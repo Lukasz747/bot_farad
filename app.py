@@ -39,7 +39,7 @@ Instrukcja:
 
 model = genai.GenerativeModel('gemini-3.1-flash-lite', system_instruction=system_instruction)
 
-st.title("Farad - Twój Asystent Techniczny")
+st.subheader("Farad - Twój Asystent Techniczny")
 
 # Inicjalizacja czatu
 if "messages" not in st.session_state:
