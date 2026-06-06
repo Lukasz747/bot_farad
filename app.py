@@ -2,16 +2,20 @@ import streamlit as st
 import google.generativeai as genai
 import os
 
-# Ukrywanie logo/stopki Streamlit
-hide_streamlit_style = """
+# Ukrywanie logo/stopki Streamlit i zmniejszenie odstępów
+custom_css = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
             .stAppDeployButton {visibility: hidden;}
+            .block-container {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1rem !important;
+            }
             </style>
             """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(custom_css, unsafe_allow_html=True)
 
 # 1. Konfiguracja API
 # 1. Konfiguracja API - bezpieczne pobieranie z sekretów
