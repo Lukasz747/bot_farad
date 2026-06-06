@@ -26,6 +26,38 @@ custom_css = """
                 display: none !important;
                 visibility: hidden !important;
             }
+
+            /* Zmniejszenie rozmiarów i marginesów nagłówków w czacie oraz aplikacji */
+            [data-testid="stChatMessage"] h1, h1 {
+                font-size: 1.4rem !important;
+                margin-top: 0.8rem !important;
+                margin-bottom: 0.4rem !important;
+                line-height: 1.25 !important;
+            }
+            [data-testid="stChatMessage"] h2, h2 {
+                font-size: 1.25rem !important;
+                margin-top: 0.8rem !important;
+                margin-bottom: 0.4rem !important;
+                line-height: 1.25 !important;
+            }
+            [data-testid="stChatMessage"] h3, h3 {
+                font-size: 1.15rem !important;
+                margin-top: 0.7rem !important;
+                margin-bottom: 0.35rem !important;
+                line-height: 1.25 !important;
+            }
+            [data-testid="stChatMessage"] h4, h4 {
+                font-size: 1.05rem !important;
+                margin-top: 0.6rem !important;
+                margin-bottom: 0.3rem !important;
+                line-height: 1.25 !important;
+            }
+            [data-testid="stChatMessage"] h5, h5, [data-testid="stChatMessage"] h6, h6 {
+                font-size: 0.95rem !important;
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.25rem !important;
+                line-height: 1.25 !important;
+            }
             </style>
             """
 st.markdown(custom_css, unsafe_allow_html=True)
