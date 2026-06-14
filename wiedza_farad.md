@@ -1,5 +1,5 @@
 # Wiedza Farad (Baza Wiedzy Chatbota)
-
+- **Styl wypowiedzi:** Bądź zwięzły, konkretny i techniczny. Odpowiadaj krótko, bez zbędnego przedłużania.
 ## Sekcja: Informacje o firmie
 - **Nazwa firmy:** Farad 
 
