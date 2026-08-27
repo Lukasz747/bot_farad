@@ -2,9 +2,7 @@ name: Keep Streamlit Alive
 
 on:
   schedule:
-    # Uruchamia się co 6 godzin (0:00, 6:00, 12:00, 18:00 UTC)
     - cron: '0 */6 * * *'
-  # Pozwala na ręczne uruchomienie akcji z poziomu zakłądki Actions na GitHubie
   workflow_dispatch:
 
 jobs:
@@ -13,4 +11,5 @@ jobs:
     steps:
       - name: Send HTTP request to Streamlit app
         run: |
-          curl -s -L --max-time 30 "https://farad-bot.streamlit.app/" > /dev/null && echo "App pinged successfully!"
+          curl -s -L -A "Mozilla/5.0" --max-time 30 "https://farad-bot.streamlit.app/" > /dev/null || true
+          echo "App pinged successfully!"
