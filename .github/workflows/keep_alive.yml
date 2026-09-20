@@ -2,23 +2,22 @@ name: Keep Streamlit Alive
 
 on:
   schedule:
-    # Uruchamia co 6 godzin
     - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
   ping:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.10'
 
-      - name: Install Playwright
+      - name: Install Dependencies
         run: |
           pip install playwright
           playwright install chromium --with-deps
@@ -33,10 +32,21 @@ jobs:
               browser = p.chromium.launch(headless=True)
               page = browser.new_page()
               print('Łączenie z aplikacją Streamlit...')
-              response = page.goto('https://farad-bot.streamlit.app/', wait_until='networkidle', timeout=60000)
-              print(f'Status HTTP: {response.status}')
-              # Krótkie odczekanie na nawiązanie sesji
-              time.sleep(10)
+              
+              page.goto('https://farad-bot.streamlit.app/', wait_until='networkidle', timeout=60000)
+              
+              # Szukanie przycisku wybudzania
+              sleep_button = page.get_by_role('button', name='Get app back up')
+              
+              if sleep_button.is_visible(timeout=5000):
+                  print('Aplikacja była uśpiona. Klikam przycisk wybudzania...')
+                  sleep_button.click()
+                  # Czas na przetworzenie żądania wybudzenia przez Streamlit
+                  time.sleep(15)
+                  print('Przycisk kliknięty, aplikacja się wybudza.')
+              else:
+                  print('Aplikacja jest już aktywna.')
+
               browser.close()
-              print('Aplikacja pomyślnie wybudzona!')
+              print('Zakończono pomyślnie.')
           "
