@@ -2,14 +2,41 @@ name: Keep Streamlit Alive
 
 on:
   schedule:
-    - cron: '0 */4 * * *'
+    # Uruchamia co 6 godzin
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Send HTTP request to Streamlit app
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Playwright
         run: |
-          curl -s -L -A "Mozilla/5.0" --max-time 30 "https://farad-bot.streamlit.app/" > /dev/null || true
-          echo "App pinged successfully!"
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Ping Streamlit App with Playwright
+        run: |
+          python -c "
+          from playwright.sync_api import sync_playwright
+          import time
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              page = browser.new_page()
+              print('Łączenie z aplikacją Streamlit...')
+              response = page.goto('https://farad-bot.streamlit.app/', wait_until='networkidle', timeout=60000)
+              print(f'Status HTTP: {response.status}')
+              # Krótkie odczekanie na nawiązanie sesji
+              time.sleep(10)
+              browser.close()
+              print('Aplikacja pomyślnie wybudzona!')
+          "
