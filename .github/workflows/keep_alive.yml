@@ -48,5 +48,5 @@ jobs:
                   print('Aplikacja jest już aktywna.')
 
               browser.close()
-              print('Zakończono pomyślnie.')
+              print('Zakonczono pomyślnie.')
           "
